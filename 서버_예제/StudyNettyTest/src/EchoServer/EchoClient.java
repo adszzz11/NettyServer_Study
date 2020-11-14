@@ -33,7 +33,9 @@ public final class EchoClient {
             f.channel().closeFuture().sync();
         }
         finally {
-            group.shutdownGracefully();
+            group.shutdownGracefully(); // Excutor에게 이 서버를 다운시키는 신호를 보냄 -> isShuttingDown() : true -> Excutor가 완전한 서버 다운을 서서히 실행.
+            //group.shutdown(); //Excutor 클래스의 메소드. 서버 다운 명령
+            //group.shutdownNow();  //Excutor 클래스의 메소드. 즉시 서버 종료 메소드.
         }
 
     }
